@@ -12,18 +12,26 @@ export default function Hero() {
         </p>
         <hr className="my-4 border-white/20" />
 
-        <button
-          onClick={() => setShowMore(!showMore)}
-          className="
-            px-6 py-3 
-            bg-gradient-to-r from-purple-500 to-cyan-400 
-            text-white font-medium rounded-lg 
-            shadow-lg hover:scale-105 hover:brightness-110 transition 
-            duration-300 transform hover:cursor-pointer
-          "
-        >
-          Tudj meg többet!
-        </button>
+       <button
+  onClick={() => setShowMore(!showMore)}
+  className="
+  mt-2
+  px-5 py-2
+  text-sm sm:text-base
+  rounded-xl
+  border-2 border-teal-500/80
+  bg-slate-400/10
+  text-white font-semibold
+  shadow-md shadow-teal-500/40
+  hover:scale-105
+  hover:border-pink-500/80
+  hover:shadow-pink-500/60
+  transition-all
+  hover:cursor-pointer
+  "
+>
+  {showMore ? "Bezárás" : "Tudj meg többet!"}
+</button>
 
         {/* Lenyíló rész */}
         <div
