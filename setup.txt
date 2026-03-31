@@ -1,0 +1,14 @@
+npm create vite@latest classroom-frontend               /létrehozás React Javascript
+npm install                                             /telepítés?
+//nem kell npm install bootstrap @popperjs/core                    /bootstrap telepítés
+npm install react-router-dom                            /több oldalhoz
+
+npm install axios                                        /olyan mint a fetch csak könnyebb a syntaxis
+
+NODEJS
+https://nodejs.org/en/download
+átirni powershellbe rendszergazdaként
+
+TAILWIND
+https://tailwindcss.com/docs/installation/using-vite    /tailwind
+npm install tailwindcss @tailwindcss/vite
