@@ -19,10 +19,11 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen text-white bg-[#0A0E14]">
+    <div className="relative min-h-screen  bg-zinc-800 overflow-hidden text-white">
+     <div className='absolute w-[420px]  h-[420px] sm:w-[600px] sm:h-[600px] bg-indigo-500/15 blur-3xl rounded-full top-[-140px] left-[-140px] sm:top-[-200px] sm:left-[-200px]' />
+      <div className='absolute w-[420px]  h-[420px] sm:w-[600px] sm:h-[600px] bg-cyan-500/10 blur-3xl rounded-full bottom-[-140px] right-[-140px] sm:bottom-[-200px] sm:right-[-200px]' />
 
-      {/* háttér */}
-      <div className="fixed inset-0 -z-10 bg-[url('/kepek/kezdoHatter.jpg')] bg-cover bg-center" />
+
 
       {/* NAVBAR */}
       <Navbar/>

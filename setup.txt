@@ -12,3 +12,8 @@ https://nodejs.org/en/download
 TAILWIND
 https://tailwindcss.com/docs/installation/using-vite    /tailwind
 npm install tailwindcss @tailwindcss/vite
+
+
+inditas
+cd Tanterem
+npm run dev

@@ -15,7 +15,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-zinc-900/90 backdrop-blur-md shadow-md z-50">
+    <nav className="fixed top-0 w-full bg-zinc-750 backdrop-blur-md shadow-md z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
 
         {/* Bal oldali linkek (desktop) */}
