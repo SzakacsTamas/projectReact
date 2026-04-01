@@ -17,3 +17,21 @@ npm install tailwindcss @tailwindcss/vite
 inditas
 cd Tanterem
 npm run dev
+
+Fizz Liga
+Magyar focis játékélmény, statisztikák, hírek és minijátékok egy modern sport UI felületen.
+
+Gyorslinkek
+Hírek
+Tabella
+Draft játék
+Kártya játék
+Információ
+Rólunk
+Kapcsolat
+Adatvédelem
+Felhasználási feltételek
+Kövess minket
+© 2026 Fizz Liga Draft
+•
+Készítette a Fizz Liga csapata

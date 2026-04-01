@@ -1,25 +1,79 @@
 import { useState } from "react";
 
 export default function Navbar() {
+
+
+  
   const [isOpen, setIsOpen] = useState(false);
 
+const scrollToFooter = (e) => {
+  e.preventDefault();
+  const el = document.getElementById("footer");
+
+  if (el) {
+    // A navbar magasságával korrigáljuk a scroll-t
+    const navbarHeight = document.querySelector("nav")?.offsetHeight || 64;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+    window.scrollTo({ top, behavior: "smooth" });
+
+    // 🔥 villanás késleltetéssel
+    setTimeout(() => {
+      el.classList.remove("flashFooter"); // reset
+      void el.offsetWidth; // reflow hack
+      el.classList.add("flashFooter");
+    }, 400); // várunk a görgetésre
+  }
+
+  setIsOpen(false); // mobil menü esetén zárjuk
+};
+
   const scrollToLogin = (e) => {
-    e.preventDefault();
-    const el = document.getElementById("login");
+  e.preventDefault();
+  const el = document.getElementById("login");
 
-    if (el) {
-      const topOffset = window.innerHeight / 2 - el.offsetHeight / 2;
-      const top =
-        el.getBoundingClientRect().top + window.pageYOffset - topOffset;
+  if (el) {
+    const topOffset = window.innerHeight / 2 - el.offsetHeight / 2;
+    const top =
+      el.getBoundingClientRect().top + window.pageYOffset - topOffset;
 
-      window.scrollTo({ top, behavior: "smooth" });
-    }
+    window.scrollTo({ top, behavior: "smooth" });
 
-    setIsOpen(false);
-  };
+    // 🔥 villanás késleltetéssel
+    setTimeout(() => {
+      el.classList.remove("flash"); // reset
+      void el.offsetWidth; // reflow hack (újraindítja animációt)
+      el.classList.add("flash");
+    }, 400); // várunk míg odagörget
+  }
+
+  setIsOpen(false);
+};
+
+const scrollToStats = (e) => {
+  e.preventDefault();
+  const el = document.getElementById("statisztikak");
+
+  if (el) {
+    // középre pozicionáljuk a blokkot
+    const topOffset = window.innerHeight / 2 - el.offsetHeight / 2;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - topOffset;
+
+    window.scrollTo({ top, behavior: "smooth" });
+
+    // villanás animáció késleltetéssel
+    setTimeout(() => {
+      el.classList.remove("flash"); // reset
+      void el.offsetWidth; // reflow hack
+      el.classList.add("flash");
+    }, 400); // várakozás, amíg odagörget
+  }
+
+  setIsOpen(false); // ha mobil menü nyitva van
+};
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50
+    <nav className="fixed top-0 left-0 w-full z-50 py-3
     bg-[#070b14]/60 backdrop-blur-xl">
 
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
@@ -54,7 +108,8 @@ export default function Navbar() {
           <div className="hidden md:flex gap-8 ml-4">
 
             <a
-              href="#stats"
+             onClick={scrollToStats}
+              href="#statisztikak"
               className="text-gray-300 hover:text-cyan-400 transition font-medium"
             >
               Statisztikák
@@ -62,6 +117,7 @@ export default function Navbar() {
 
             <a
               href="#footer"
+                onClick={scrollToFooter}
               className="text-gray-300 hover:text-purple-400 transition font-medium"
             >
               Elérhetőségek
@@ -113,20 +169,26 @@ transition-all
         }`}
       >
         <div className="px-6 pb-5 pt-4 space-y-3
-        bg-purple-300/10 backdrop-blur-xl
+       
         border-t border-white/10 shadow-lg">
 
-          <a
-            href="#stats"
-            onClick={() => setIsOpen(false)}
-            className="block text-gray-300 hover:text-cyan-400 transition"
-          >
-            Statisztikák
-          </a>
+<a
+  href="#statisztikak"
+  onClick={(e) => {
+    setIsOpen(false);  // bezárja a mobil menüt
+    scrollToStats(e);  // scroll és villanás
+  }}
+  className="block text-gray-300 hover:text-cyan-400 transition"
+>
+  Statisztikák
+</a>
 
           <a
             href="#footer"
-            onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+    setIsOpen(false);  // bezárja a mobil menüt
+    scrollToFooter(e);  // scroll és villanás
+  }}
             className="block text-gray-300 hover:text-purple-400 transition"
           >
             Elérhetőségek
@@ -137,8 +199,8 @@ transition-all
 
       {/* NAVBAR ALSÓ ELVÁLASZTÓ */}
 
-      <div className="absolute bottom-0 left-0 w-full h-px
-      bg-gradient-to-r from-transparent via-violet-800/90 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full 
+      bg-gradient-to-r from-transparent via-violet-500/90 h-[2.5px] to-transparent" />
 
     </nav>
   );

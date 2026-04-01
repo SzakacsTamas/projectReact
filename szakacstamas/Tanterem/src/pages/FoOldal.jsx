@@ -20,7 +20,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden text-white
+    <div className="  select-none relative min-h-screen overflow-hidden text-white
     bg-gradient-to-br from-[#070b14] via-[#0f172a] to-[#020617]">
 
       {/* AURORA BLOBS */}
@@ -51,7 +51,7 @@ export default function App() {
       <LoginCard />
 
       {/* STATS */}
-      <Stats stats={stats} />
+
 
       {/* FOOTER */}
       <Footer />

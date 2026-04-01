@@ -32,6 +32,26 @@
   }
 }
 
+@keyframes flash-bg {
+  0%   { background-color: rgba(255,255,255,0.10); box-shadow: 0 0 0px transparent; }
+  50%  { background-color: rgba(139,92,246,0.25); box-shadow: 0 0 30px rgba(139,92,246,0.6); }
+  100% { background-color: rgba(255,255,255,0.10); box-shadow: 0 0 0px transparent; }
+}
+
+.flash {
+  animation: flash-bg 1s ease;
+}
+
+@keyframes flash-bg-footer {
+  0%   { background-color: rgba(oklch(21% 0.006 285.885)); box-shadow: 0 0 0px transparent; }
+  50%  { background-color: rgba(4, 134, 194, 0.25); box-shadow: 0 0 30px rgba(12, 71, 126, 0.6); }
+  100% { background-color: rgba(oklch(21% 0.006 285.885)); box-shadow: 0 0 0px transparent; }
+}
+
+.flashFooter {
+  animation: flash-bg-footer 1s ease;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
