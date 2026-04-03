@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import Features from "../components/Features";
-import LoginCard from "../components/LoginCard";
-import Stats from "../components/Stats";
-import Footer from "../components/Footer";
+import Navbar from "../components/weboldal/Navbar";
+import Hero from "../components/weboldal/Hero";
+import Features from "../components/weboldal/Features";
+import LoginCard from "../components/weboldal/LoginCard";
+import Footer from "../components/weboldal/Footer";
 
 export default function App() {
   const [stats, setStats] = useState({ tanar: 0, diak: 0 });
