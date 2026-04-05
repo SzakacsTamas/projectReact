@@ -1,4 +1,7 @@
 import { useTheme } from "../../context/ThemeContext";
+import { useState, useEffect } from "react";
+
+const isMobile = () => window.innerWidth < 1024;
 
 const menuItems = [
   { icon: "🏠︎", label: "Főoldal",           href: "/" },
@@ -10,7 +13,12 @@ const menuItems = [
 export default function Sidebar({ open }) {
   const { theme } = useTheme();
   const dark = theme === "dark";
-
+const [mobile, setMobile] = useState(isMobile);
+useEffect(() => {                                   // ← itt van a komponensben
+    const handler = () => setMobile(isMobile());
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
   return (
     <aside
       className={`fixed top-16 left-0 z-40 flex flex-col
@@ -20,10 +28,12 @@ export default function Sidebar({ open }) {
           ? "bg-[#070b14]/40 border-indigo-500/15"
           : "bg-white/40 border-slate-400 shadow-xl shadow-slate-800/50"
         }`}
-      style={{
-        width: open ? "220px" : "74px",
-        height: "calc(100vh - 64px)",
-      }}
+style={{
+  width: mobile
+    ? open ? "65px" : "0px"      // mobilon: nyitva=ikonok, csukva=rejtett
+    : open ? "220px" : "70px",   // asztali: nyitva=szöveges, csukva=ikonok
+  height: "calc(100vh - 64px)",
+}}
     >
       <div className="flex flex-col gap-1 p-2 flex-1">
         <div className={`h-px my-1 ${dark ? "bg-indigo-500/15" : "bg-slate-400/50"}`} />
@@ -36,13 +46,13 @@ export default function Sidebar({ open }) {
               transition-all duration-200 whitespace-nowrap
               ${dark
                 ? "text-slate-400 hover:text-indigo-400 hover:bg-indigo-500/15"
-                : "text-slate-600 hover:text-indigo-900 hover:bg-indigo-200/70"
+                : "text-slate-600 hover:text-rose-400/80 hover:bg-slate-300/60"
               }`}
           >
             <span className="text-xl w-7 flex justify-center shrink-0">{item.icon}</span>
-            {open && (
-              <span className="font-mono text-xs tracking-wide">{item.label}</span>
-            )}
+          {open && !mobile && (
+  <span className="font-mono text-xs tracking-wide">{item.label}</span>
+)}
           </a>
         ))}
       </div>
@@ -59,9 +69,9 @@ export default function Sidebar({ open }) {
             }`}
         >
           <span className="text-xl w-7 flex justify-center shrink-0">➜</span>
-          {open && (
-            <span className="font-mono text-xs tracking-wide">Kijelentkezés</span>
-          )}
+          {open && !mobile && (
+  <span className="font-mono text-xs tracking-wide">Kijelentkezés</span>
+)}
         </a>
       </div>
     </aside>

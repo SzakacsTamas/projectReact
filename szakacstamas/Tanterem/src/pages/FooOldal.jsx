@@ -15,13 +15,14 @@ export default function FooOldal() {
     <div>
       {/* Fejléc */}
       <div className="mb-7">
-        <p className="font-mono text-[11px] text-slate-500 uppercase tracking-widest mb-1">
-          Üdvözlet · 2025
-        </p>
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 via-cyan-400 to-purple-400
-          bg-clip-text text-transparent">
-          Kurzusaid
-        </h1>
+
+<h1 className={`text-2xl font-bold
+  ${dark
+    ? "bg-gradient-to-r from-indigo-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent"
+    : "drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
+  }`}>
+  Kurzusaid
+</h1>
       </div>
 
       {/* Kártyák rács */}
@@ -38,23 +39,34 @@ export default function FooOldal() {
         ))}
 
         {/* Kurzus hozzáadás — csak tanárnak */}
-        {userRole === "teacher" && (
-          <div
-            className="group border-2 border-dashed border-indigo-500/25
-              rounded-2xl p-5 cursor-pointer flex flex-col items-center
-              justify-center gap-2 min-h-[110px]
-              hover:border-indigo-400/50 hover:bg-indigo-500/5
-              transition-all duration-200"
-            onClick={() => console.log("Kurzus létrehozás")}
-          >
-            <span className="text-3xl text-indigo-500/50 group-hover:text-indigo-400 transition-colors">
-              +
-            </span>
-            <span className="font-mono text-xs text-slate-500 group-hover:text-slate-400 transition-colors">
-              Kurzus létrehozása
-            </span>
-          </div>
-        )}
+{userRole === "teacher" && (
+  <div
+    className={`group border-2 border-dashed rounded-2xl p-5
+      cursor-pointer flex flex-col items-center
+      justify-center gap-2 min-h-[110px]
+      transition-all duration-200
+      ${dark
+        ? "border-indigo-500/30 hover:border-indigo-400/60 hover:bg-indigo-500/15"
+        : "border-violet-500/50 hover:border-violet-600/80 hover:bg-violet-300/70"
+      }`}
+    onClick={() => console.log("Kurzus létrehozás")}
+  >
+    <span className={`text-3xl transition-colors
+      ${dark
+        ? "text-indigo-500/50 group-hover:text-indigo-400"
+        : "text-violet-400/60 group-hover:text-violet-500"
+      }`}>
+      +
+    </span>
+    <span className={`font-mono text-xs transition-colors
+      ${dark
+        ? "text-slate-500 group-hover:text-slate-400"
+        : "text-slate-400 group-hover:text-slate-600"
+      }`}>
+      Kurzus létrehozása
+    </span>
+  </div>
+)}
       </div>
 
       {/* Következő komponens helye */}
