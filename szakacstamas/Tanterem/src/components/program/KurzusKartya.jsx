@@ -5,6 +5,7 @@ export default function KurzusKartya({ cim, tanar, szerep = "student", onClick }
   const dark = theme === "dark";
 
   return (
+    
     <div
       onClick={onClick}
       className={`group relative rounded-2xl p-5 cursor-pointer
