@@ -6,6 +6,7 @@ import FooOldal from "./pages/FooOldal";
 import Layout from "./components/program/Layout";
 import Uzenetek from "./components/program/Uzenetek";
 import KurzusLetrehozas from "./components/program/KurzusLetrehozas";
+import Kurzus1 from "./components/program/kurzusok/Kurzus1";
 
 function App() {
   return (
@@ -13,17 +14,18 @@ function App() {
       <Router>
         <Routes>
 
-        <Route element={<Layout />}>
-          <Route path="/" element={<FooOldal />} />
-          <Route path="/Uzenetek" element={<Uzenetek />} />
-          <Route path="/KurzusLetrehozas" element={<KurzusLetrehozas />} />
-        </Route>
+          <Route element={<Layout />}>
+            <Route path="/" element={<FooOldal />} />
+            <Route path="/uzenetek" element={<Uzenetek />} />
+            <Route path="/kurzus-letrehozas" element={<KurzusLetrehozas />} />
+            <Route path="/kurzus/:id" element={<Kurzus1 />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
 
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
     </ThemeProvider>
-
   );
 }
 
-export default App;
+export default App; 

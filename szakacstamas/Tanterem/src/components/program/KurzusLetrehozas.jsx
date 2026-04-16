@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { useTheme } from "../../context/ThemeContext";
 
 function generateCode() {
@@ -196,7 +198,9 @@ export default function KurzusLetrehozas() {
 
           {/* Gombok */}
           <div className="flex gap-3">
-            <button
+            <Link
+            to="/"
+             
               onClick={handleLetrehozas}
               className={`flex-1 py-2.5 rounded-xl text-sm font-mono
                 border transition-all duration-200 cursor-pointer
@@ -206,8 +210,12 @@ export default function KurzusLetrehozas() {
                 }`}
             >
               ✓ Létrehozás
-            </button>
-            <button
+            </Link>
+
+          
+            <Link
+  to="/"
+            
               className={`flex-1 py-2.5 rounded-xl text-sm font-mono
                 border transition-all duration-200 cursor-pointer
                 ${dark
@@ -216,7 +224,9 @@ export default function KurzusLetrehozas() {
                 }`}
             >
               ✕ Elvetés
-            </button>
+              
+            </Link>
+      
           </div>
 
         </div>

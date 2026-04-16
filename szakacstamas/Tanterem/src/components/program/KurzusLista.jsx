@@ -28,29 +28,25 @@ export default function KurzusLista({ kurzusok, userRole }) {
             cim={k.cim}
             tanar={k.tanar}
             szerep={k.szerep}
-            onClick={() => console.log("Megnyitva:", k.cim)}
+            to={`/kurzus/${k.id}`}
           />
         ))}
 
-        {/* Hozzáadás */}
+        {/* Hozzáadás — csak tanárnak */}
         {userRole === "teacher" && (
           <Link
-  to="/KurzusLetrehozas"
-  className={`group border-2 border-dashed rounded-2xl p-5
-    cursor-pointer flex flex-col items-center justify-center gap-2 min-h-[110px]
-    transition-all duration-200 block
-    ${
-      dark
-        ? "border-indigo-500/30 hover:border-indigo-400/60 hover:bg-indigo-500/35"
-        : "border-violet-500/50 hover:border-violet-600/80 hover:bg-violet-300/70"
-    }
-  `}
->
-  <span className="text-3xl">+</span>
-  <span className="text-xs font-mono">
-    Kurzus létrehozása
-  </span>
-</Link>
+            to="/kurzus-letrehozas"
+            className={`group border-2 border-dashed rounded-2xl p-5
+              flex flex-col items-center justify-center gap-2 min-h-[110px]
+              transition-all duration-200
+              ${dark
+                ? "border-indigo-500/30 hover:border-indigo-400/60 hover:bg-indigo-500/15 text-slate-500 hover:text-slate-400"
+                : "border-violet-500/50 hover:border-violet-600/80 hover:bg-violet-300/70 text-slate-400 hover:text-slate-600"
+              }`}
+          >
+            <span className="text-3xl transition-colors">+</span>
+            <span className="text-xs font-mono transition-colors">Kurzus létrehozása</span>
+          </Link>
         )}
       </div>
     </>
