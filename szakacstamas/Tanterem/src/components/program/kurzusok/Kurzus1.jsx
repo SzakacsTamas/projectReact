@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useTheme } from "../../../context/ThemeContext";
-
+import { Link } from "react-router-dom";
 // Példa adat — később API-ból jön
 const kurzusAdatok = {
   1: {
@@ -78,7 +78,13 @@ export default function Kurzus1() {
               👥 {kurzus.letszam} tanuló
             </span>
           </div>
-
+          {/* Tanár */}
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-cyan-400 shrink-0" />
+            <span className={`font-mono text-sm ${dark ? "text-slate-400" : "text-slate-500"}`}>
+              {kurzus.tanar}
+            </span>
+          </div>
           {/* Cím */}
           <h1 className={`text-3xl sm:text-4xl font-bold mb-2
             ${dark
@@ -88,20 +94,32 @@ export default function Kurzus1() {
             {kurzus.cim}
           </h1>
 
-          {/* Tanár */}
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-cyan-400 shrink-0" />
-            <span className={`font-mono text-sm ${dark ? "text-slate-400" : "text-slate-500"}`}>
-              {kurzus.tanar}
-            </span>
-          </div>
 
-          {/* Leírás */}
-          <p className={`text-sm leading-relaxed max-w-xl
-            ${dark ? "text-slate-400" : "text-slate-600"}`}>
-            {kurzus.leiras}
-          </p>
 
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+
+  {/* Leírás */}
+  <p className={`text-sm leading-relaxed max-w-xl
+    ${dark ? "text-slate-400" : "text-slate-600"}`}>
+    {kurzus.leiras}
+  </p>
+
+  {/* Gomb */}
+  <Link
+    to={`/kurzus/${id}/uj-feladat`}
+    className={`text-xs font-mono px-4 py-4 rounded-xl border
+      transition-all duration-200 cursor-pointer
+      flex items-center gap-2 justify-center shrink-0
+      ${
+        dark
+          ? "border-cyan-500/40 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+          : "border-indigo-400 text-indigo-600 hover:bg-indigo-50 hover:border-indigo-600"
+      }`}
+  >
+    + Feladat létrehozása
+  </Link>
+
+</div>
         </div>
       </div>
 

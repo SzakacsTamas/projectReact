@@ -6,7 +6,7 @@ const isMobile = () => window.innerWidth < 1024;
 
 const menuItems = [
   { icon: "🏠︎", label: "Főoldal",           to: "/" },
-  { icon: "✙",  label: "Kurzus létrehozás", to: "/KurzusLetrehozas" },
+  { icon: "✙",  label: "Kurzus létrehozás", to: "/kurzus-letrehozas" },
   { icon: "🗐", label: "Feladatok",          to: "/feladatok" },
   { icon: "✉︎", label: "Üzenetek",           to: "/Uzenetek" },
 ];
@@ -28,8 +28,8 @@ export default function Sidebar({ open }) {
         backdrop-blur-2xl border-r
         transition-all duration-300 overflow-hidden
         ${dark
-          ? "bg-[#070b14]/40 border-indigo-500/15"
-          : "bg-white/40 border-slate-400 shadow-xl shadow-slate-800/50"
+          ? "bg-[#070b14]/10 border-indigo-500/15 shadow-xl shadow-white/20"
+          : "bg-white/40 border-slate-400 shadow-xl shadow-slate-800/80"
         }`}
       style={{
         width: mobile
@@ -48,8 +48,8 @@ export default function Sidebar({ open }) {
             className={`flex items-center gap-3 px-2 py-2.5 rounded-xl
               transition-all duration-200 whitespace-nowrap
               ${dark
-                ? "text-slate-400 hover:text-indigo-400 hover:bg-indigo-500/15"
-                : "text-slate-600 hover:text-rose-400/80 hover:bg-slate-300/60"
+                ? "text-slate-200 hover:text-indigo-500 hover:bg-indigo-500/22"
+                : "text-black  hover:bg-white"
               }`}
           >
             <span className="text-xl w-7 flex justify-center shrink-0">{item.icon}</span>

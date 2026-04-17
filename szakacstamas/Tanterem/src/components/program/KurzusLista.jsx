@@ -41,7 +41,7 @@ export default function KurzusLista({ kurzusok, userRole }) {
               transition-all duration-200
               ${dark
                 ? "border-indigo-500/30 hover:border-indigo-400/60 hover:bg-indigo-500/15 text-slate-500 hover:text-slate-400"
-                : "border-violet-500/50 hover:border-violet-600/80 hover:bg-violet-300/70 text-slate-400 hover:text-slate-600"
+                : "border-blue-800/50 hover:border-blue-700 hover:bg-blue-800/25 text-slate-600 hover:text-slate-500"
               }`}
           >
             <span className="text-3xl transition-colors">+</span>

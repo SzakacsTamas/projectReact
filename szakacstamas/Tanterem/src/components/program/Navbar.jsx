@@ -1,11 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar({ onHamburger }) {
   const { theme, toggle } = useTheme();
   const dark = theme === "dark";
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handler = (e) => {
@@ -23,8 +26,8 @@ export default function Navbar({ onHamburger }) {
         flex items-center justify-between px-4
         backdrop-blur-xl border-b transition-colors duration-300
         ${dark
-          ? "bg-slate-900/70 border-indigo-500/20"
-          : "bg-white/75 border-slate-400 shadow-xl"
+          ? "bg-slate-900/70 border-indigo-500/20 shadow-xl shadow-white/10"
+          : "bg-white/50 border-slate-400 shadow-xl shadow-slate-800/30"
         }`}
     >
 
@@ -35,8 +38,8 @@ export default function Navbar({ onHamburger }) {
           className={`w-9 h-9 flex items-center justify-center rounded-lg
             transition-all duration-200 text-xl
             ${dark
-              ? "text-slate-400 hover:bg-indigo-500/15 hover:text-indigo-400"
-              : "text-slate-600 hover:text-indigo-600 hover:bg-indigo-300/50"
+              ? " text-slate-200 hover:text-indigo-500 hover:bg-indigo-500/22"
+                : "text-black  hover:bg-white"
             }`}
         >
           ☰
@@ -44,20 +47,21 @@ export default function Navbar({ onHamburger }) {
       </div>
 
       {/* Logo — abszolút középen */}
-      <div className="absolute left-1/2 -translate-x-1/2">
+      <Link className="absolute left-1/2 -translate-x-1/2" to="/">
+      
         <img
           src="src/images/logo2.png"
           alt="Tanterem logo"
           className="max-w-[80px] sm:max-w-[90px] h-auto object-contain"
         />
-      </div>
+      </Link>
 
       {/* Jobb oldal */}
       <div className="relative" ref={menuRef}>
         <div
           onClick={() => setMenuOpen((o) => !o)}
           className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full cursor-pointer
-            bg-gradient-to-br from-indigo-500 to-cyan-400
+            bg-gradient-to-br from-rose-500 to-cyan-400
             flex items-center justify-center font-bold text-xs sm:text-sm text-white
             transition-all duration-200
             ${dark
@@ -131,17 +135,19 @@ export default function Navbar({ onHamburger }) {
 
             {/* Fiók műveletek */}
             <div className="p-1.5 sm:p-2">
-              <button
-                className={`w-full text-left px-3 py-2 sm:py-2.5
-                  rounded-xl text-xs sm:text-sm
-                  font-mono transition-all duration-200 cursor-pointer
-                  ${dark
-                    ? "text-slate-300 hover:bg-indigo-500/15 hover:text-indigo-400"
-                    : "text-slate-600 hover:bg-indigo-100/80 hover:text-indigo-600"
-                  }`}
-              >
-                Saját fiók
-              </button>
+<Link
+  to="/sajat-fiok"
+  className={`block w-full text-left px-3 py-2 sm:py-2.5
+    rounded-xl text-xs sm:text-sm
+    font-mono transition-all duration-200 cursor-pointer
+    ${
+      dark
+        ? "text-slate-300 hover:bg-indigo-500/15 hover:text-indigo-400"
+        : "text-slate-600 hover:bg-indigo-100/80 hover:text-indigo-600"
+    }`}
+>
+  Saját fiók
+</Link>
 
               <button
                 className={`w-full text-left px-3 py-2 sm:py-2.5

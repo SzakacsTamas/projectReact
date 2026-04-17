@@ -7,6 +7,7 @@ import Layout from "./components/program/Layout";
 import Uzenetek from "./components/program/Uzenetek";
 import KurzusLetrehozas from "./components/program/KurzusLetrehozas";
 import Kurzus1 from "./components/program/kurzusok/Kurzus1";
+import SajatFiok from "./components/program/SajatFiok";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/uzenetek" element={<Uzenetek />} />
             <Route path="/kurzus-letrehozas" element={<KurzusLetrehozas />} />
             <Route path="/kurzus/:id" element={<Kurzus1 />} />
+            <Route path="/sajat-fiok" element={<SajatFiok />} />
             <Route path="/register" element={<Register />} />
           </Route>
 
