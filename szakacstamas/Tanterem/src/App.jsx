@@ -8,7 +8,7 @@ import Uzenetek from "./components/program/Uzenetek";
 import KurzusLetrehozas from "./components/program/KurzusLetrehozas";
 import Kurzus1 from "./components/program/kurzusok/Kurzus1";
 import SajatFiok from "./components/program/SajatFiok";
-
+import Feladat1 from "./components/program/kurzusok/Feladat1";
 function App() {
   return (
     <ThemeProvider>
@@ -22,6 +22,7 @@ function App() {
             <Route path="/kurzus/:id" element={<Kurzus1 />} />
             <Route path="/sajat-fiok" element={<SajatFiok />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/kurzus/:id/feladat/:feladatId" element={<Feladat1 />} />
           </Route>
 
         </Routes>

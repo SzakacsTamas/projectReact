@@ -133,7 +133,8 @@ export default function Kurzus1() {
 
       <div className="flex flex-col gap-3">
         {kurzus.tananyagok.map((t, index) => (
-          <div
+          <Link
+          to={`/kurzus/${id}/feladat/${t.id}`}
             key={t.id}
             className={`group relative rounded-2xl p-5 border cursor-pointer
               transition-all duration-200 hover:-translate-y-0.5
@@ -183,7 +184,7 @@ export default function Kurzus1() {
               </div>
 
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
