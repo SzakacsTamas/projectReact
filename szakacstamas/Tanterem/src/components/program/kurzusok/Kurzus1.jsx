@@ -92,13 +92,20 @@ export default function Kurzus1() {
 
           {/* Felső sor */}
           <div className="flex items-center justify-between mb-4">
-            <span className={`font-mono text-xs px-3 py-1 rounded-full border tracking-widest
-              ${dark
-                ? "bg-indigo-500/20 border-indigo-500/30 text-indigo-300"
-                : "bg-indigo-100 border-indigo-300 text-indigo-600"
-              }`}>
-              # {kurzus.kod}
-            </span>
+            
+           <span
+onClick={() => {
+  navigator.clipboard.writeText(kurzus.kod);
+  alert("Kimásolva!");
+}}
+  className={`cursor-pointer font-mono text-xs px-3 py-1 rounded-full border tracking-widest
+    ${dark
+      ? "bg-indigo-500/20 border-indigo-500/30 text-indigo-300"
+      : "bg-indigo-100 border-indigo-300 text-indigo-600"
+    }`}
+>
+  # {kurzus.kod}
+</span>
             <span className={`font-mono text-xs px-3 py-1 rounded-full border
               ${dark
                 ? "bg-slate-800/60 border-slate-700 text-slate-400"

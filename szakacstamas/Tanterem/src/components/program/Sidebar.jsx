@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const isMobile = () => window.innerWidth < 1024;
-
+const userRole= "fasz";
 const menuItems = [
-  { icon: "🏠︎", label: "Főoldal",           to: "/" },
-  { icon: "✙",  label: "Kurzus létrehozás", to: "/kurzus-letrehozas" },
-  { icon: "🗐", label: "Feladatok",          to: "/feladatok" },
-  { icon: "✉︎", label: "Üzenetek",           to: "/Uzenetek" },
-];
+    { icon: '🏠︎', label: 'Főoldal', to: '/' },
+    ...(userRole === 'teacher'
+      ? [{ icon: '✙', label: 'Kurzus létrehozás', to: '/kurzus-letrehozas' }]
+      : [{ icon: '➣', label: 'Kurzus csatlakozás', to: '/kurzus-csatlakozas' }]),
+    { icon: '✉︎', label: 'Üzenetek', to: '/uzenetek' },
+  ];
 
 export default function Sidebar({ open }) {
   const { theme } = useTheme();

@@ -52,7 +52,7 @@ export default function KurzusLetrehozas() {
 
           {/* Kurzus címe */}
           <div className="mb-6">
-            <label className={`block font-mono text-xs tracking-widest uppercase mb-2
+            <label className={`block font-mono text-xs tracking-widest uppercase mb-2 
               ${dark ? "text-slate-400" : "text-slate-500"}`}>
               Kurzus címe
             </label>
@@ -62,7 +62,7 @@ export default function KurzusLetrehozas() {
               onChange={(e) => setCim(e.target.value)}
               placeholder="pl. Programozás 13.C"
               className={`w-full px-4 py-2.5 rounded-xl text-sm font-mono
-                border outline-none transition-all duration-200
+                border outline-none transition-all duration-200 
                 ${dark
                   ? "bg-slate-800/60 border-indigo-500/20 text-slate-200 placeholder-slate-600 focus:border-indigo-400 focus:shadow-[0_0_15px_rgba(99,102,241,0.2)]"
                   : "bg-white border-slate-300 text-slate-800 placeholder-slate-400 focus:border-indigo-400 focus:shadow-[0_0_15px_rgba(99,102,241,0.15)]"
@@ -115,7 +115,7 @@ export default function KurzusLetrehozas() {
                   id="korlatok"
                   checked={korlatok}
                   onChange={(e) => setKorlatok(e.target.checked)}
-                  className="accent-indigo-500 w-4 h-4 cursor-pointer"
+                  className="accent-cyan-500 w-4 h-4 cursor-pointer"
                 />
                 <label htmlFor="korlatok" className={`text-xs font-mono cursor-pointer
                   ${dark ? "text-slate-400" : "text-slate-600"}`}>
