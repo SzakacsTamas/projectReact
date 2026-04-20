@@ -10,6 +10,7 @@ const menuItems = [
       ? [{ icon: '✙', label: 'Kurzus létrehozás', to: '/kurzus-letrehozas' }]
       : [{ icon: '➣', label: 'Kurzus csatlakozás', to: '/kurzus-csatlakozas' }]),
     { icon: '✉︎', label: 'Üzenetek', to: '/uzenetek' },
+    { icon: '🗺', label: 'Böngésző', to: '/uzenetek' },
   ];
 
 export default function Sidebar({ open }) {
@@ -40,25 +41,31 @@ export default function Sidebar({ open }) {
       }}
     >
       <div className="flex flex-col gap-1 p-2 flex-1">
-        <div className={`h-px my-1 ${dark ? "bg-indigo-500/15" : "bg-slate-400/50"}`} />
+        <div className={`h-px my-1 ${dark ? "bg-indigo-500/25" : "bg-slate-400/80"}`} />
 
-        {menuItems.map((item) => (
-          <Link
-            key={item.label}
-            to={item.to}
-            className={`flex items-center gap-3 px-2 py-2.5 rounded-xl
-              transition-all duration-200 whitespace-nowrap
-              ${dark
-                ? "text-slate-200 hover:text-indigo-500 hover:bg-indigo-500/22"
-                : "text-black  hover:bg-white"
-              }`}
-          >
-            <span className="text-xl w-7 flex justify-center shrink-0">{item.icon}</span>
-            {open && !mobile && (
-              <span className="font-mono text-xs tracking-wide">{item.label}</span>
-            )}
-          </Link>
-        ))}
+       {menuItems.map((item, index) => (
+  <div key={item.label}>
+    <Link
+      to={item.to}
+      className={`flex items-center gap-3 px-2 py-2.5 rounded-xl
+        transition-all duration-200 whitespace-nowrap
+        ${dark
+          ? "text-slate-200 hover:text-indigo-500 hover:bg-indigo-500/22"
+          : "text-black hover:bg-white"
+        }`}
+    >
+      <span className="text-xl w-7 flex justify-center shrink-0">{item.icon}</span>
+      {open && !mobile && (
+        <span className="font-mono text-xs tracking-wide">{item.label}</span>
+      )}
+    </Link>
+
+    {item.label === "Üzenetek" && (
+       <div className={`h-px my-1 ${dark ? "bg-indigo-500/25" : "bg-slate-400/80"}`} />
+
+    )}
+  </div>
+))}
       </div>
 
       {/* Kijelentkezés */}

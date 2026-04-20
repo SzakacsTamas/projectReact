@@ -117,7 +117,7 @@ export default function TananyagLetrehozas() {
                 ? "border-indigo-500/25 hover:border-indigo-400/50 hover:bg-indigo-500/5 text-slate-500 hover:text-slate-400"
                 : "border-slate-300 hover:border-indigo-400 hover:bg-indigo-50/50 text-slate-400 hover:text-slate-600"
               }`}>
-              <span className="text-2xl">📎</span>
+              <span className="text-2xl">🗁</span>
               <span className="font-mono text-xs">Kattints a feltöltéshez</span>
               <input
                 type="file"
