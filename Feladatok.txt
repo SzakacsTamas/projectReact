@@ -1,0 +1,3 @@
+Ha publikusra nyomok, akkor először is legyen más színű maga a gomb, alapértelmezett formában is, ÉS ha rányomok tűnjön létszám panel, illetve a kurzus kódja rész is
+
+Üzenetek?

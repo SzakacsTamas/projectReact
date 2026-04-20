@@ -13,7 +13,7 @@ export default function KurzusLetrehozas() {
   const dark = theme === "dark";
 
   const [cim, setCim] = useState("");
-  const [lathatasag, setLathatasag] = useState("publikus");
+  const [lathatasag, setLathatasag] = useState("privát");
   const [korlatok, setKorlatok] = useState(false);
   const [letszam, setLetszam] = useState("");
   const [leiras, setLeiras] = useState("");
@@ -82,7 +82,7 @@ export default function KurzusLetrehozas() {
                 Láthatóság
               </label>
               <div className="flex gap-2">
-                {["publikus", "privát"].map((opt) => (
+                {["privát", "publikus"].map((opt) => (
                   <button
                     key={opt}
                     onClick={() => setLathatasag(opt)}

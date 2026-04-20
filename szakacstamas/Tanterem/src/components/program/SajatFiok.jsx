@@ -54,7 +54,7 @@ const [confirmPassword, setConfirmPassword] = useState("");
       : "bg-white border-slate-300 text-slate-800 focus:border-indigo-400 focus:shadow-[0_0_15px_rgba(99,102,241,0.15)]"
     }`;
 
-  const editBtnClass = `px-3 py-1.5 rounded-xl text-xs font-mono border
+  const editBtnClass = `px-3 py-2.5 rounded-xl text-xs font-mono border
     transition-all duration-200 cursor-pointer
     ${dark
       ? "border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/15 hover:border-indigo-400"
@@ -270,7 +270,7 @@ const [confirmPassword, setConfirmPassword] = useState("");
             <Link
             to="/"
               onClick={handleMegse}
-              className={`flex-1 py-2.5 rounded-xl text-sm font-mono border
+              className={`flex-1 py-2.5  rounded-xl text-sm font-mono border
                 transition-all duration-200
                 ${dark
                   ? "border-red-500/30 text-red-400/70 hover:bg-red-500/10 hover:border-red-400 hover:text-red-400"
