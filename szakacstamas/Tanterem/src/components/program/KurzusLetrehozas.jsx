@@ -75,69 +75,91 @@ export default function KurzusLetrehozas() {
           {/* Három oszlop */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 
-            {/* Láthatóság */}
-            <div>
-              <label className={`block font-mono text-xs tracking-widest uppercase mb-3
-                ${dark ? "text-slate-400" : "text-slate-500"}`}>
-                Láthatóság
-              </label>
-              <div className="flex gap-2">
-                {["privát", "publikus"].map((opt) => (
-                  <button
-                    key={opt}
-                    onClick={() => setLathatasag(opt)}
-                    className={`flex-1 py-2 rounded-xl text-xs font-mono capitalize cursor-pointer
-                      border transition-all duration-200
-                      ${lathatasag === opt
-                        ? dark
-                          ? "bg-indigo-500/20 border-indigo-400 text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.3)]"
-                          : "bg-indigo-100 border-indigo-400 text-indigo-700"
-                        : dark
-                          ? "bg-transparent border-slate-700 text-slate-500 hover:border-indigo-500/50"
-                          : "bg-transparent border-slate-300 text-slate-400 hover:border-indigo-300"
-                      }`}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            </div>
+           {/* Láthatóság */}
+<div>
+  <label className={`block font-mono text-xs tracking-widest uppercase mb-3
+    ${dark ? "text-slate-400" : "text-slate-500"}`}>
+    Láthatóság
+  </label>
+  <div className="flex gap-2">
+    <button
+      onClick={() => setLathatasag("privát")}
+      className={`flex-1 py-2 rounded-xl text-xs font-mono capitalize cursor-pointer
+        border transition-all duration-200
+        ${lathatasag === "privát"
+          ? dark
+            ? "bg-indigo-500/20 border-indigo-400 text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.3)]"
+            : "bg-indigo-100 border-indigo-400 text-indigo-700"
+          : dark
+            ? "bg-transparent border-slate-700 text-slate-500 hover:border-indigo-500/50"
+            : "bg-transparent border-slate-300 text-slate-400 hover:border-indigo-300"
+        }`}
+    >
+      privát
+    </button>
+    <button
+      onClick={() => { setLathatasag("publikus"); setKorlatok(false); }}
+      className={`flex-1 py-2 rounded-xl text-xs font-mono capitalize cursor-pointer
+        border transition-all duration-200
+        ${lathatasag === "publikus"
+          ? dark
+            ? "bg-green-500/20 border-green-400 text-green-300 shadow-[0_0_12px_rgba(34,197,94,0.3)]"
+            : "bg-green-100 border-green-400 text-green-700"
+          : dark
+            ? "bg-transparent border-slate-700 text-slate-500 hover:border-green-500/50 hover:text-green-400"
+            : "bg-transparent border-slate-300 text-slate-400 hover:border-green-400 hover:text-green-600"
+        }`}
+    >
+      publikus
+    </button>
+  </div>
+</div>
+         {/* Létszám — csak privát módban */}
+<div className="min-h-[120px]">
+  {lathatasag === "privát" ? (
+    <div>
+      <label className={`block font-mono text-xs tracking-widest uppercase mb-3
+        ${dark ? "text-slate-400" : "text-slate-500"}`}>
+        Létszám
+      </label>
 
-            {/* Létszám */}
-            <div>
-              <label className={`block font-mono text-xs tracking-widest uppercase mb-3
-                ${dark ? "text-slate-400" : "text-slate-500"}`}>
-                Létszám
-              </label>
-              <div className="flex items-center gap-2 mb-2">
-                <input
-                  type="checkbox"
-                  id="korlatok"
-                  checked={korlatok}
-                  onChange={(e) => setKorlatok(e.target.checked)}
-                  className="accent-cyan-500 w-4 h-4 cursor-pointer"
-                />
-                <label htmlFor="korlatok" className={`text-xs font-mono cursor-pointer
-                  ${dark ? "text-slate-400" : "text-slate-600"}`}>
-                  Korlátolt
-                </label>
-              </div>
-              {korlatok && (
-                <input
-                  type="number"
-                  min="1"
-                  value={letszam}
-                  onChange={(e) => setLetszam(e.target.value)}
-                  placeholder="Max. létszám"
-                  className={`w-full px-3 py-2 rounded-xl text-xs font-mono
-                    border outline-none transition-all duration-200
-                    ${dark
-                      ? "bg-slate-800/60 border-indigo-500/20 text-slate-200 placeholder-slate-600 focus:border-indigo-400"
-                      : "bg-white border-slate-300 text-slate-800 placeholder-slate-400 focus:border-indigo-400"
-                    }`}
-                />
-              )}
-            </div>
+      <div className="flex items-center gap-2 mb-2">
+        <input
+          type="checkbox"
+          id="korlatok"
+          checked={korlatok}
+          onChange={(e) => setKorlatok(e.target.checked)}
+          className="accent-cyan-500 w-4 h-4 cursor-pointer"
+        />
+        <label
+          htmlFor="korlatok"
+          className={`text-xs font-mono cursor-pointer
+            ${dark ? "text-slate-400" : "text-slate-600"}`}
+        >
+          Korlátolt
+        </label>
+      </div>
+
+      {korlatok && (
+        <input
+          type="number"
+          min="1"
+          value={letszam}
+          onChange={(e) => setLetszam(e.target.value)}
+          placeholder="Max. létszám"
+          className={`w-full px-3 py-2 rounded-xl text-xs font-mono
+            border outline-none transition-all duration-200
+            ${dark
+              ? "bg-slate-800/60 border-indigo-500/20 text-slate-200 placeholder-slate-600 focus:border-indigo-400"
+              : "bg-white border-slate-300 text-slate-800 placeholder-slate-400 focus:border-indigo-400"
+            }`}
+        />
+      )}
+    </div>
+  ) : (
+    <div className="h-full" />
+  )}
+</div>
 
             {/* Leírás */}
             <div>
