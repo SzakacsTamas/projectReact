@@ -1,7 +1,96 @@
 import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useBreadcrumb } from "../../context/BreadcrumbContext";
+
+function Breadcrumb({ dark }) {
+  const { kurzusNev, feladatNev } = useBreadcrumb();
+  const location = useLocation();
+
+  const reszek = location.pathname.split("/").filter(Boolean);
+  const elemek = [{ nev: "TanTér", to: "/" }];
+
+  reszek.forEach((resz, index) => {
+    const elozo = reszek[index - 1];
+
+    // Ezeket a szavakat kihagyjuk
+    if (resz === "kurzus" || resz === "feladat" || resz === "tananyag") return;
+
+    // Kurzus id helyett kurzus neve
+    if (elozo === "kurzus") {
+      elemek.push({
+        nev: kurzusNev ?? resz,
+        to: "/" + reszek.slice(0, index + 1).join("/"),
+      });
+      return;
+    }
+
+    // Feladat vagy tananyag id helyett annak neve
+    if (elozo === "feladat" || elozo === "tananyag") {
+      elemek.push({
+        nev: feladatNev ?? resz,
+        to: "/" + reszek.slice(0, index + 1).join("/"),
+      });
+      return;
+    }
+
+    // Minden más útvonal szegmens
+    const nevek = {
+      "kurzus-letrehozas": "Kurzus létrehozás",
+      "uj-feladat": "Új feladat",
+      "uj-tananyag": "Új tananyag",
+      "sajat-fiok": "Saját fiók",
+      "uzenetek": "Üzenetek",
+      "feladatok": "Feladatok",
+    };
+    elemek.push({
+      nev: nevek[resz] ?? resz,
+      to: "/" + reszek.slice(0, index + 1).join("/"),
+    });
+  });
+
+  if (elemek.length === 1) {
+    return (
+      <span className={`hidden sm:block font-mono text-sm font-bold tracking-wide
+        ${dark ? "text-slate-300" : "text-slate-700"}`}>
+        TanTér
+      </span>
+    );
+  }
+
+  return (
+    <div className="hidden sm:flex items-center gap-1 font-mono text-sm">
+      {elemek.map((elem, index) => {
+        const utolso = index === elemek.length - 1;
+        return (
+          <span key={elem.to} className="flex items-center gap-1">
+            {index > 0 && (
+              <span className={`text-xs ${dark ? "text-slate-600" : "text-slate-400"}`}>
+                ›
+              </span>
+            )}
+            {utolso ? (
+              <span className={`font-semibold
+                ${dark ? "text-indigo-300" : "text-indigo-600"}`}>
+                {elem.nev}
+              </span>
+            ) : (
+              <Link
+                to={elem.to}
+                className={`transition-colors duration-200
+                  ${dark
+                    ? "text-slate-400 hover:text-slate-200"
+                    : "text-slate-500 hover:text-slate-800"
+                  }`}>
+                {elem.nev}
+              </Link>
+            )}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function Navbar({ onHamburger }) {
   const { theme, toggle } = useTheme();
@@ -31,24 +120,25 @@ export default function Navbar({ onHamburger }) {
         }`}
     >
 
-      {/* Bal oldal */}
+      {/* Bal oldal — hamburger + breadcrumb */}
       <div className="flex items-center gap-3">
         <button
           onClick={onHamburger}
           className={`w-9 h-9 flex items-center justify-center rounded-lg
             transition-all duration-200 text-xl
             ${dark
-              ? " text-slate-200 hover:text-indigo-500 hover:bg-indigo-500/22"
-                : "text-black  hover:bg-white"
+              ? "text-slate-200 hover:text-indigo-500 hover:bg-indigo-500/22"
+              : "text-black hover:bg-white"
             }`}
         >
           ☰
         </button>
+
+        <Breadcrumb dark={dark} />
       </div>
 
       {/* Logo — abszolút középen */}
       <Link className="absolute left-1/2 -translate-x-1/2" to="/">
-      
         <img
           src="src/images/logo2.png"
           alt="Tanterem logo"
@@ -135,19 +225,18 @@ export default function Navbar({ onHamburger }) {
 
             {/* Fiók műveletek */}
             <div className="p-1.5 sm:p-2">
-<Link
-  to="/sajat-fiok"
-  className={`block w-full text-left px-3 py-2 sm:py-2.5
-    rounded-xl text-xs sm:text-sm
-    font-mono transition-all duration-200 cursor-pointer
-    ${
-      dark
-        ? "text-slate-300 hover:bg-indigo-500/15 hover:text-indigo-400"
-        : "text-slate-600 hover:bg-indigo-100/80 hover:text-indigo-600"
-    }`}
->
-  Saját fiók
-</Link>
+              <Link
+                to="/sajat-fiok"
+                className={`block w-full text-left px-3 py-2 sm:py-2.5
+                  rounded-xl text-xs sm:text-sm
+                  font-mono transition-all duration-200 cursor-pointer
+                  ${dark
+                    ? "text-slate-300 hover:bg-indigo-500/15 hover:text-indigo-400"
+                    : "text-slate-600 hover:bg-indigo-100/80 hover:text-indigo-600"
+                  }`}
+              >
+                Saját fiók
+              </Link>
 
               <button
                 className={`w-full text-left px-3 py-2 sm:py-2.5

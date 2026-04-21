@@ -12,7 +12,7 @@ export default function KurzusLista({ kurzusok, userRole }) {
       <div className="mb-7">
         <h1 className={`text-2xl font-bold
           ${dark
-            ? "bg-gradient-to-r from-indigo-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent"
+            ? "text-white"
             : "drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
           }`}>
           Kurzusaid

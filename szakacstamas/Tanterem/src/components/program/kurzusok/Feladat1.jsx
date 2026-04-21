@@ -1,6 +1,41 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "../../../context/ThemeContext";
+import { useBreadcrumb } from "../../../context/BreadcrumbContext"; // útvonalat igazítsd
+
+const kurzusAdatok = {
+  1: {
+    cim: "Programozás 13.C",
+    tanar: "Dr. Deszka Dávid",
+    leiras: "Bevezetés a programozás világába, algoritmusok és adatszerkezetek.",
+    letszam: 28,
+    kod: "PROG13C",
+    tananyagok: [
+      { id: 1, cim: "Bevezetés a programozásba", leiras: "Alapfogalmak, változók, típusok", datum: "2025.01.10", ido: "15 perc" },
+      { id: 2, cim: "Vezérlési szerkezetek", leiras: "If-else, switch, ciklusok", datum: "2025.01.17", ido: "25 perc" },
+      { id: 3, cim: "Függvények", leiras: "Függvénydefiníció, paraméterek, visszatérési érték", datum: "2025.01.24", ido: "30 perc" },
+      { id: 4, cim: "Tömbök és listák", leiras: "Adatszerkezetek alapjai", datum: "2025.02.01", ido: "20 perc" },
+    ],
+    feladatok: [
+      { id: 1, cim: "Változók és típusok", hatarido: "2025.02.15", maxPont: 100, beadva: 18 },
+      { id: 2, cim: "Ciklusok gyakorlása", hatarido: "2025.02.22", maxPont: 50, beadva: 10 },
+    ],
+  },
+  2: {
+    cim: "Matematika 13.C",
+    tanar: "Kovács Mária",
+    leiras: "Emelt szintű matematika érettségire való felkészülés.",
+    letszam: 22,
+    kod: "MAT13C",
+    tananyagok: [
+      { id: 1, cim: "Függvények és határértékek", leiras: "Alapfüggvények, határérték fogalma", datum: "2025.01.09", ido: "20 perc" },
+      { id: 2, cim: "Differenciálszámítás", leiras: "Derivált fogalma és szabályai", datum: "2025.01.16", ido: "35 perc" },
+    ],
+    feladatok: [
+      { id: 1, cim: "Határérték számítás", hatarido: "2025.02.10", maxPont: 80, beadva: 15 },
+    ],
+  },
+};
 
 const feladatAdatok = {
   1: {
@@ -12,6 +47,7 @@ const feladatAdatok = {
     csatoltak: [
       { nev: "feladat_leiras.pdf", meret: "120 KB" },
       { nev: "segédanyag.py", meret: "2 KB" },
+      
     ],
     beadasok: [
       { id: 1, nev: "Kiss Péter",    datum: "2025.02.10", pont: 85,  beadva: true  },
@@ -27,9 +63,12 @@ export default function Feladat1() {
   const { id, feladatId } = useParams();
   const { theme } = useTheme();
   const dark = theme === "dark";
-
+const { setKurzusNev, setFeladatNev } = useBreadcrumb();
   const feladat = feladatAdatok[feladatId ?? 1];
-
+useEffect(() => {
+  if (feladat) {setFeladatNev(feladat.cim);setKurzusNev(kurzusAdatok[id]?.cim ?? null)} // kurzus nevét is beállítja
+  return () => setFeladatNev(null);setKurzusNev(null);
+}, [feladat, id]);
   const [lezarva, setLezarva] = useState(feladat?.lezarva ?? false);
   const [pontok, setPontok] = useState(
     Object.fromEntries(feladat?.beadasok.map((b) => [b.id, b.pont ?? ""]) ?? [])

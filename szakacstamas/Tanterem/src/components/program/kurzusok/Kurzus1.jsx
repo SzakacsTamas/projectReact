@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useTheme } from "../../../context/ThemeContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useBreadcrumb } from "../../../context/BreadcrumbContext";
 
 const kurzusAdatok = {
   1: {
@@ -37,12 +38,18 @@ const kurzusAdatok = {
 };
 
 export default function Kurzus1() {
+  const { setKurzusNev } = useBreadcrumb();
   const { id } = useParams();
   const { theme } = useTheme();
   const dark = theme === "dark";
   const [aktivisTab, setAktivisTab] = useState("tananyagok");
 
   const kurzus = kurzusAdatok[id];
+
+   useEffect(() => {
+    if (kurzus) setKurzusNev(kurzus.cim);
+    return () => setKurzusNev(null); // tisztítás amikor elhagyod az oldalt
+  }, [kurzus]);
 
   if (!kurzus) {
     return (
@@ -57,10 +64,10 @@ export default function Kurzus1() {
     font-mono text-xs transition-all duration-200 border cursor-pointer
     ${aktivisTab === "tananyagok"
       ? dark
-        ? "bg-purple-500/20 border-purple-400/60 text-purple-300"
+        ? "bg-purple-800/20 border-purple-400/60 text-purple-300"
         : "bg-indigo-100 border-indigo-400 text-indigo-700"
       : dark
-        ? "bg-transparent border-slate-700/50 text-slate-500 hover:border-indigo-500/30 hover:text-slate-400"
+        ? "bg-transparent border-slate-700/50 text-slate-500 hover:border-purple-600/30 hover:text-slate-400"
         : "bg-transparent border-slate-200 text-slate-400 hover:border-indigo-300 hover:text-slate-600"
     }`;
 
@@ -76,7 +83,7 @@ export default function Kurzus1() {
     }`;
 
   return (
-    <div className="max-w-4xl mx-auto px-2">
+    <div className="max-w-4xl mx-auto">
 
       {/* FEJLÉC */}
       <div className={`relative rounded-2xl overflow-hidden mb-8 border
@@ -126,7 +133,7 @@ onClick={() => {
           {/* Cím */}
           <h1 className={`text-3xl sm:text-4xl font-bold mb-4
             ${dark
-              ? "bg-gradient-to-r from-indigo-300 via-cyan-300 to-purple-300 bg-clip-text text-transparent"
+              ? "text-white"
               : "text-slate-800 drop-shadow-[0_1px_3px_rgba(0,0,0,0.2)]"
             }`}>
             {kurzus.cim}
@@ -196,12 +203,12 @@ onClick={() => {
         <div className="flex flex-col gap-3">
           {[...kurzus.tananyagok].reverse().map((t, index) => (
             <Link
-              to={`/kurzus/${id}/feladat/${t.id}`}
+              to={`/kurzus/${id}/tananyag/${t.id}`}
               key={t.id}
               className={`group relative rounded-2xl p-5 border
                 transition-all duration-200 hover:-translate-y-0.5
                 ${dark
-                  ? "bg-slate-900/60 border-indigo-500/15 hover:border-indigo-500/40 hover:bg-slate-900/80 hover:shadow-[0_4px_20px_rgba(99,102,241,0.1)] backdrop-blur-md"
+                  ? "bg-slate-900/60 border-purple-500/20 hover:border-purple-500/60 hover:bg-slate-900/80 hover:shadow-[0_4px_20px_rgba(99,102,241,0.1)] backdrop-blur-md"
                   : "bg-white/70 border-slate-200 hover:border-indigo-300 hover:bg-white hover:shadow-[0_4px_20px_rgba(99,102,241,0.1)] backdrop-blur-md"
                 }`}
             >
@@ -209,7 +216,7 @@ onClick={() => {
                 <div className={`w-8 h-8 rounded-xl flex items-center justify-center
                   font-mono font-bold text-xs shrink-0
                   ${dark
-                    ? "bg-indigo-500/20 text-indigo-400 border border-indigo-500/30"
+                    ? "bg-purple-600/20 text-indigo-400 border border-indigo-300/50"
                     : "bg-indigo-100 text-indigo-600 border border-indigo-200"
                   }`}>
                   {String(kurzus.tananyagok.length - index).padStart(2, "0")}
@@ -254,7 +261,7 @@ onClick={() => {
               className={`group relative rounded-2xl p-5 border
                 transition-all duration-200 hover:-translate-y-0.5
                 ${dark
-                  ? "bg-slate-900/60 border-indigo-500/15 hover:border-cyan-500/40 hover:bg-slate-900/80 hover:shadow-[0_4px_20px_rgba(34,211,238,0.08)] backdrop-blur-md"
+                  ? "bg-slate-900/60 border-cyan-500/20 hover:border-cyan-500/50 hover:bg-slate-900/80 hover:shadow-[0_4px_20px_rgba(34,211,238,0.08)] backdrop-blur-md"
                   : "bg-white/70 border-slate-200 hover:border-cyan-300 hover:bg-white hover:shadow-[0_4px_20px_rgba(34,211,238,0.1)] backdrop-blur-md"
                 }`}
             >

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import { useNavigate, useParams } from "react-router-dom";
+import { useBreadcrumb } from "../../context/BreadcrumbContext";
+
 
 export default function FeladatLetrehozas() {
   const { theme } = useTheme();
@@ -14,6 +16,10 @@ export default function FeladatLetrehozas() {
   const [maxPont, setMaxPont] = useState(100);
   const [lathatasag, setLathatasag] = useState("publikus");
   const [fajlok, setFajlok] = useState([]);
+   useEffect(() => {                                        // ← IDE
+    setKurzusNev(kurzusAdatok[id]?.cim ?? null);
+    return () => setKurzusNev(null);
+  }, [id]);
 
   const handleFajl = (e) => {
     const ujak = Array.from(e.target.files).map((f) => ({

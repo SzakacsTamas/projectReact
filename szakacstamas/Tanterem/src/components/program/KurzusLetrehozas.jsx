@@ -31,7 +31,7 @@ export default function KurzusLetrehozas() {
   };
 
   return (
-    <div className="flex justify-center px-4 py-8">
+    <div className="flex justify-center py-8">
       <div className={`w-full max-w-2xl rounded-2xl border backdrop-blur-xl shadow-2xl
         transition-colors duration-300
         ${dark
