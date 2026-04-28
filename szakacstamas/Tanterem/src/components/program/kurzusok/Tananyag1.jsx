@@ -185,4 +185,4 @@ export default function Tananyag1() {
 
     </div>
   );
-}
+} 

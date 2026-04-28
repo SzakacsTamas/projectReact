@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useTheme } from "../../context/ThemeContext";
+import { FaLock, FaGlobe } from 'react-icons/fa';
 
 function generateCode() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -76,6 +77,7 @@ export default function KurzusLetrehozas() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 
            {/* Láthatóság */}
+            n
 <div>
   <label className={`block font-mono text-xs tracking-widest uppercase mb-3
     ${dark ? "text-slate-400" : "text-slate-500"}`}>
@@ -84,7 +86,7 @@ export default function KurzusLetrehozas() {
   <div className="flex gap-2">
     <button
       onClick={() => setLathatasag("privát")}
-      className={`flex-1 py-2 rounded-xl text-xs font-mono capitalize cursor-pointer
+      className={`flex-1 py-2 rounded-xl text-xs font-mono capitalize cursor-pointer flex items-center justify-center
         border transition-all duration-200
         ${lathatasag === "privát"
           ? dark
@@ -95,11 +97,11 @@ export default function KurzusLetrehozas() {
             : "bg-transparent border-slate-300 text-slate-400 hover:border-indigo-300"
         }`}
     >
-      privát
+      <FaLock className="w-4 h-4 mr-2" /> privát
     </button>
     <button
       onClick={() => { setLathatasag("publikus"); setKorlatok(false); }}
-      className={`flex-1 py-2 rounded-xl text-xs font-mono capitalize cursor-pointer
+      className={`flex-1 py-2 rounded-xl text-xs font-mono capitalize cursor-pointer flex items-center justify-center
         border transition-all duration-200
         ${lathatasag === "publikus"
           ? dark
@@ -110,7 +112,7 @@ export default function KurzusLetrehozas() {
             : "bg-transparent border-slate-300 text-slate-400 hover:border-green-400 hover:text-green-600"
         }`}
     >
-      publikus
+      <FaGlobe className="w-4 h-4 mr-2" /> publikus
     </button>
   </div>
 </div>
@@ -138,7 +140,7 @@ export default function KurzusLetrehozas() {
         >
           Korlátolt
         </label>
-      </div>
+      </div>                        
 
       {korlatok && (
         <input
